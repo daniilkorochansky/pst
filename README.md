@@ -2,6 +2,7 @@
 ![Status](https://img.shields.io/badge/status-Experimental-orange)
 ![Documents](https://img.shields.io/badge/PST-5-blueviolet)
 ![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
+[![Discussions](https://img.shields.io/github/discussions/daniilkorochansky/pst?label=discussions)](https://github.com/daniilkorochansky/pst/discussions)
 
 # PST — Pawn Standards and Techniques
 
