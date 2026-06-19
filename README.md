@@ -14,7 +14,7 @@ tool compatibility and project organization.
 
 ## Current Standards
 
-- PST-0000 — PST Process
+- [PST-0000](https://github.com/daniilkorochansky/pst/blob/main/pst/PST-0000.md) — PST Process
 - PST-0001 — Naming Conventions
 - PST-0002 — Project Layout
 - PST-0003 — Documentation Comments
