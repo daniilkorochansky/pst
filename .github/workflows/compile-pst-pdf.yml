@@ -16,28 +16,36 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc weasyprint
 
-      # Тщательная очистка README от многострочного HTML с языками и бейджей
+      # Тщательная очистка файла и подготовка контента
       - name: Prepare Clean Introduction from README
         run: |
-          # 1. Сначала полностью вырезаем многострочный блок <div align="center">...</div> с языками
-          sed -e '/<div align="center">/,/<\/div>/d' README_ru.md > temp_intro.md
-          
-          # 2. Удаляем текстовые бейджи/ссылки, если они остались вверху файла
-          grep -v -E "(License|Status|Documents|Contributions|Welcome|Discussions)" README.md > clean_intro.md
-          
-          # 3. Добавляем разрыв страницы в конец введения
-          echo -e "\n\pagebreak" >> clean_intro.md
+          # Пытаемся обработать как русский, так и английский README, если они есть
+          TARGET_FILE="README.md"
 
-      # Создаем CSS-стиль: строгий, с датой вверху каждой страницы и нижним подчеркиванием в TOC
+          # 1. Вырезаем многострочный блок с разметкой div
+          sed -e '/<div align="center">/,/<\/div>/d' "$TARGET_FILE" > temp_intro.md
+          
+          # 2. Жестко вырезаем остатки строки с языками и бейджи
+          grep -v -E "(\[English|Русский|\[English \/ Русский\]|license|status|contribution|discussion)" temp_intro.md > clean_intro.md
+          
+          # 3. Добавляем валидный разрыв страницы через HTML-совместимый тег
+          echo -e "\n<div style=\"page-break-after: always;\"></div>" >> clean_intro.md
+
+      # Настройка CSS: дата строго на первой странице
       - name: Create PDF Custom Stylesheet
         run: |
-          cat << 'EOF' > pdf-style.css
-          /* Настройка страницы: добавляем дату в левый верхний угол (margin-box) */
+          CURRENT_DATE=$(date +'%d-%b-%Y')
+          cat << EOF > pdf-style.css
+          /* Базовая страница без колонтитулов */
           @page {
               size: A4;
               margin: 1in;
+          }
+
+          /* Дата отображается ТОЛЬКО на первой странице в левом верхнем углу */
+          @page :first {
               @top-left {
-                  content: "Generated: 20-Jun-2026";
+                  content: "Generated: $CURRENT_DATE";
                   font-family: "DejaVu Sans", sans-serif;
                   font-size: 9px;
                   color: #555555;
@@ -60,7 +68,6 @@ jobs:
               padding-bottom: 6px;
           }
           
-          /* Оформление оглавления с нижним подчеркиванием */
           #TOC {
               margin-bottom: 30px;
               padding: 10px 0;
@@ -74,7 +81,6 @@ jobs:
               margin-bottom: 6px;
           }
           
-          /* Исправленное отображение блоков кода без багов разметки */
           pre {
               background-color: #f6f8fa;
               border: 1px solid #e1e4e8;
@@ -93,19 +99,21 @@ jobs:
           }
           EOF
 
-      # Собираем PDF строго в формате markdown (с флагом gfm для исключения багов со звездочками)
+      # Собираем PDF с динамическим именем файла, содержащим дату
       - name: Compile Markdown to PDF
         run: |
+          FILE_DATE=$(date +'%Y-%m-%d')
           pandoc clean_intro.md pst/pst-*.md \
             -f gfm \
-            -o pst-specification.pdf \
+            -o "pst-specification-${FILE_DATE}.pdf" \
             --toc \
             --toc-depth=2 \
             --pdf-engine=weasyprint \
             -c pdf-style.css
 
+      # Скачиваемый архив на GitHub тоже будет содержать дату в имени
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pst-specification
-          path: pst-specification.pdf
+          name: "pst-specification-$(date +'%Y-%m-%d')"
+          path: pst-specification-*.pdf
