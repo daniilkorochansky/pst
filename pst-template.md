@@ -41,10 +41,3 @@ Explain why you chose this specific design or technical approach over alternativ
 Address how this standard impacts existing Pawn scripts and legacy servers.
 * Does it break compatibility with old compiler versions or standard SA-MP includes?
 * If it introduces changes that require rewriting code, outline a migration path or explain how an IDE (like Spawn) can automate the transition.
-
-## 6. Copyright
-This document is licensed under a
-Creative Commons Attribution 4.0 International License.
-
-You should have received a copy of the license along with this
-work. If not, see <https://creativecommons.org/licenses/by/4.0/>.
