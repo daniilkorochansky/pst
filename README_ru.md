@@ -65,4 +65,4 @@ Pawn Standards and Techniques (PST) распространяется по лиц
 Creative Commons Attribution 4.0 International License.
 
 Вы должны были получить копию лицензии вместе с данной
-работой. Если это не так, см. <https://creativecommons.org/licenses/by/4.0/>.
+работой. Если это не так, см. [LICENSE](https://github.com/daniilkorochansky/pst/blob/main/LICENSE).
