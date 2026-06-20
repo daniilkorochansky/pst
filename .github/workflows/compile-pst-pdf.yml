@@ -1,0 +1,37 @@
+name: Compile PST Documents to PDF
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc and PDF engines
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc weasyprint
+
+      - name: Generate Meta and Table of Contents
+        run: |
+          echo -e "% Pawn Standards and Techniques (PST)\n% Specification Document\n% Generated: $(date +'%d-%b-%Y')\n\n# Introduction\n\nWelcome to the official PST specification. This document compiles all accepted and draft standards for modern Pawn development in the open.mp and SA-MP ecosystems.\n\n\pagebreak" > introduction.md
+
+      - name: Compile Markdown to PDF
+        run: |
+          pandoc introduction.md psts/pst-*.md \
+            -o pst-specification.pdf \
+            --toc \
+            --toc-depth=2 \
+            --pdf-engine=weasyprint \
+            -V geometry:margin=1in \
+            -V mainfont="DejaVu Sans"
+
+      - name: Upload PDF Artifact
+        uses: actions/artifacts@v4
+        with:
+          name: PST-Specification-PDF
+          path: pst-specification.pdf
