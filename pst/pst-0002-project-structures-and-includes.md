@@ -65,7 +65,7 @@ To prevent compilation errors caused by duplicate include statements across diff
 
 ```pawn
 // CORRECT:
-// In q_modules/core/database.inc
+// In modules/core/database.inc
 #if defined _MODULE_DATABASE_INCLUDED
     #endinput
 #endif
