@@ -15,8 +15,6 @@ The traditional way of developing SA-MP/open.mp servers involved writing code wi
 
 This standard establishes a strict, component-based modular structure for Pawn projects. It separates core initialization, business logic (modules), and configuration files.
 
----
-
 ## 2. Directory Layout
 
 Every modern Pawn project conforming to PST MUST follow this unified folder structure:
