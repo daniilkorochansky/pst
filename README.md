@@ -12,13 +12,49 @@ for Pawn development in open.mp and SA-MP projects.
 The goal of PST is to improve code readability, maintainability,
 tool compatibility and project organization.
 
-## Current Standards
+## 2. Types of PST Files
 
-- [PST-0000](https://github.com/daniilkorochansky/pst/blob/main/pst/PST-0000.md) — PST Process
-- PST-0001 — Naming Conventions
-- PST-0002 — Project Layout
-- PST-0003 — Documentation Comments
-- PST-0004 — Source File Encodings
+All PST files fall into three categories:
+
+1. **Standards:** Documents describing specific technical guidelines for writing code, mod architecture, database integration, and the use of tools (compilers, include files).
+2. **Informational:** Guides, tutorials, best-practice overviews, and recommendations. They don't set strict rules, but they help the community grow.
+3. **Process:** Documents describing the internal rules of the PST project itself.
+
+
+## 3. PST Lifecycle and Statuses
+
+Each proposal undergoes a rigorous selection and review process. The document's status is indicated in its title:
+
+* **Draft:** Initial stage. The document is open for suggestions, feedback, and active editing in the Pull Request branch.
+* **Review:** The document text has been finalized. The community is conducting a final technical review.
+* **Accepted:** The standard has been officially approved and added to the main branch (`main`) of the repository. It is recommended for implementation in all modern projects.
+* **Rejected:** The proposal has been deemed ineffective, outdated, or harmful. The document is archived, and the reasons for rejection must be specified.
+* **Obsolete:** A previously adopted standard that is no longer relevant (for example, due to global updates to open.mp) and has been replaced by the new PST.
+
+## 4. How to Submit Your PST: A Step-by-Step Guide
+
+Any community member can become a standard author. The process is as follows:
+
+1. **Discussion of the Idea:** Before writing the text, create an issue in the `Issues` section of the PST repository. Describe the problem you want to solve.
+2. **Creating a Draft:** If the idea is approved, fork the PST repository and create a new file based on the template (for example, `pst-0002.md`) with the status `Draft`.
+3. **Opening a Pull Request (PR):** Submit your draft for review. A public discussion phase will begin, during which each point will be addressed in the code comments.
+4. **Revision:** The author is required to respond to constructive criticism and make revisions to the PR.
+5. **Recording the Decision:** The PST Editor (or panel of experts) makes a consensus-based decision to change a document's status to `Accepted` or `Rejected`.
+
+---
+
+## 5. Header Template (Metadata)
+
+Each new proposal must begin with the following metadata block:
+
+```text
+PST: [Document number, issued by the editor]
+Title: [Concise name of the standard]
+Author: [Name/Nickname] <[Email or profile link]>
+Status: [Draft / Review / Accepted / Rejected / Obsolete]
+Type: [Standards / Informational / Process]
+Created: [Date in the format DD-Mmm-YYYY, for example 20-Jun-2026]
+```
 
 ## License
 
