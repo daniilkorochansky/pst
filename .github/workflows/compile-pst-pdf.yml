@@ -82,7 +82,7 @@ jobs:
       # Собираем PDF с использованием строгой темы
       - name: Compile Markdown to PDF
         run: |
-          pandoc clean_intro.md psts/pst-*.md \
+          pandoc clean_intro.md pst/pst-*.md \
             -o pst-specification.pdf \
             --toc \
             --toc-depth=2 \
@@ -93,5 +93,5 @@ jobs:
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PST-Specification-PDF
+          name: pst-specification
           path: pst-specification.pdf
