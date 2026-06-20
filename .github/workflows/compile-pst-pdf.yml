@@ -1,4 +1,4 @@
-name: 🚀 Compile PST Documents to PDF
+name: Compile PST Documents to PDF
 
 on:
   workflow_dispatch:
