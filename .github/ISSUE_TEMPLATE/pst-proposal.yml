@@ -36,7 +36,7 @@ body:
     validations:
       required: false
 
-  - type: checkbox
+  - type: x
     id: ready-to-write
     attributes:
       label: "4. Готовность к реализации (Implementation)"
