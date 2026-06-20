@@ -56,7 +56,7 @@ Each new proposal must begin with the following metadata block:
 ```text
 PST: [Document number, issued by the editor]
 Title: [Concise name of the standard]
-Author: [Name/Nickname] <[Email or profile link]>
+Author: [Name/Nickname] (<[Email or profile link]>)
 Status: [Draft / Review / Accepted / Rejected / Obsolete]
 Type: [Standards / Informational / Process]
 Created: [Date in the format DD-Mmm-YYYY, for example 20-Jun-2026]
