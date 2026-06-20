@@ -16,75 +16,73 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc weasyprint
 
-      # Шаг изменен: Очищаем README от бейджей и переключателей языков
+      # Надежная очистка README от бейджей, картинок и переключателей языков
       - name: Prepare Clean Introduction from README
         run: |
-          # Создаем чистую копию README без строк, содержащих ссылки на лицензии, бейджи и смену языка
-          grep -v -E "(license|status|contributions|discussions|\[English / Русский\])" README.md > clean_intro.md
+          # 1. Удаляем строки, содержащие markdown-ссылки на изображения (бейджи)
+          # 2. Удаляем строку с выбором языков (чувствительно к регистру и пробелам)
+          grep -v -E "(\!\[|img\.shields|license|status|contribution|discussion|English.*Russian|Русский)" README.md > clean_intro.md
+          
           # Добавляем разрыв страницы в конец введения
           echo -e "\n\pagebreak" >> clean_intro.md
 
-      # Шаг добавлен: Создаем красивый CSS-стиль для цветного PDF
+      # Создаем CSS-стиль: заголовки черные, у ссылок в оглавлении есть подчеркивание
       - name: Create PDF Custom Stylesheet
         run: |
           cat << 'EOF' > pdf-style.css
-
           body {
               font-family: "DejaVu Sans", sans-serif;
-              color: #24292e;
+              color: #000000;
               line-height: 1.6;
           }
           
+          /* Строгий черный цвет для всех заголовков */
+          h1, h2, h3, h4 {
+              color: #000000;
+          }
+          
           h1 {
-              color: #0366d6;
-              border-bottom: 2px solid #e1e4e8;
-              padding-bottom: 8px;
+              border-bottom: 1px solid #cccccc;
+              padding-bottom: 6px;
               margin-top: 30px;
           }
-          h2 {
-              color: #2f363d;
-              margin-top: 24px;
-          }
           
-
+          /* Оформление оглавления с нижним подчеркиванием у ссылок */
           #TOC {
-              background-color: #f6f8fa;
-              border: 1px solid #e1e4e8;
-              border-radius: 6px;
-              padding: 20px;
               margin-bottom: 30px;
+              padding: 10px 0;
           }
           #TOC a {
-              color: #0366d6;
-              text-decoration: none;
+              color: #000000;
+              text-decoration: underline; /* Добавлено нижнее подчеркивание */
+          }
+          #TOC li {
+              list-style-type: none;
+              margin-bottom: 6px;
           }
           
-
+          /* Классические блоки для кода Pawn */
           pre {
               background-color: #f6f8fa;
               border: 1px solid #e1e4e8;
-              border-radius: 6px;
-              padding: 16px;
+              border-radius: 4px;
+              padding: 12px;
               font-family: "DejaVu Sans Mono", monospace;
-              font-size: 13px;
-              overflow: x-auto;
+              font-size: 12px;
           }
           
-
           blockquote {
-              border-left: 4px solid #0366d6;
-              color: #6a737d;
-              background-color: #f1f8ff;
-              padding: 10px 15px;
+              border-left: 4px solid #cccccc;
+              color: #555555;
+              padding-left: 12px;
               margin-left: 0;
-              border-radius: 0 6px 6px 0;
           }
           EOF
 
-
+      # Собираем PDF с использованием строгой темы
       - name: Compile Markdown to PDF
         run: |
-          pandoc README.md pst/pst-*.md \
+          pandoc clean_intro.md psts/pst-*.md \
             -o pst-specification.pdf \
             --toc \
             --toc-depth=2 \
@@ -95,5 +93,5 @@ jobs:
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pst-specification
+          name: PST-Specification-PDF
           path: pst-specification.pdf
