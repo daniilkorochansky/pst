@@ -1,4 +1,4 @@
-name: Compile PST Documents to PDF
+name: 🚀 Compile PST Documents to PDF
 
 on:
   workflow_dispatch:
@@ -16,9 +16,71 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc weasyprint
 
-      - name: Generate Meta and Table of Contents
+      # Шаг изменен: Очищаем README от бейджей и переключателей языков
+      - name: Prepare Clean Introduction from README
         run: |
-          echo -e "% Pawn Standards and Techniques (PST)\n% Specification Document\n% Generated: $(date +'%d-%b-%Y')\n\n# Introduction\n\nWelcome to the official PST specification. This document compiles all accepted and draft standards for modern Pawn development in the open.mp and SA-MP ecosystems.\n\n\pagebreak" > introduction.md
+          # Создаем чистую копию README без строк, содержащих ссылки на лицензии, бейджи и смену языка
+          grep -v -E "(license|status|contributions|discussions|\[English / Русский\])" README.md > clean_intro.md
+          # Добавляем разрыв страницы в конец введения
+          echo -e "\n\pagebreak" >> clean_intro.md
+
+      # Шаг добавлен: Создаем красивый CSS-стиль для цветного PDF
+      - name: Create PDF Custom Stylesheet
+        run: |
+          cat << 'EOF' > pdf-style.css
+
+          body {
+              font-family: "DejaVu Sans", sans-serif;
+              color: #24292e;
+              line-height: 1.6;
+          }
+          
+          h1 {
+              color: #0366d6;
+              border-bottom: 2px solid #e1e4e8;
+              padding-bottom: 8px;
+              margin-top: 30px;
+          }
+          h2 {
+              color: #2f363d;
+              margin-top: 24px;
+          }
+          
+
+          #TOC {
+              background-color: #f6f8fa;
+              border: 1px solid #e1e4e8;
+              border-radius: 6px;
+              padding: 20px;
+              margin-bottom: 30px;
+          }
+          #TOC a {
+              color: #0366d6;
+              text-decoration: none;
+          }
+          
+
+          pre {
+              background-color: #f6f8fa;
+              border: 1px solid #e1e4e8;
+              border-radius: 6px;
+              padding: 16px;
+              font-family: "DejaVu Sans Mono", monospace;
+              font-size: 13px;
+              overflow: x-auto;
+          }
+          
+
+          blockquote {
+              border-left: 4px solid #0366d6;
+              color: #6a737d;
+              background-color: #f1f8ff;
+              padding: 10px 15px;
+              margin-left: 0;
+              border-radius: 0 6px 6px 0;
+          }
+          EOF
+
 
       - name: Compile Markdown to PDF
         run: |
@@ -27,11 +89,11 @@ jobs:
             --toc \
             --toc-depth=2 \
             --pdf-engine=weasyprint \
-            -V geometry:margin=1in \
-            -V mainfont="DejaVu Sans"
+            -c pdf-style.css \
+            -V geometry:margin=1in
 
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PST-Specification-PDF
+          name: pst-specification
           path: pst-specification.pdf
