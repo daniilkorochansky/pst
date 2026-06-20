@@ -1,0 +1,45 @@
+name: "PST Proposal (Предложение стандарта)"
+description: "Используйте этот шаблон, чтобы предложить новую идею для Pawn Standards and Techniques перед созданием черновика."
+title: "[PST Proposal]: Короткое название идеи"
+labels: ["PST: Proposal", "status: discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Привет! Спасибо за идею для улучшения экосистемы Pawn.
+        Перед тем как заполнить форму, пожалуйста, убедитесь, что аналогичное предложение еще не обсуждается в текущих Issues или Pull Requests.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "1. Какую проблему вы хотите решить? (What problem are you solving?)"
+      description: "Опишите текущие боли разработчиков. Почему существующие практики в SAMP/open.mp устарели или неэффективны?"
+      placeholder: "Например: Разработчики используют разные стили кастомных колбэков, что ломает совместимость модулей..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: "2. Ваше предложение (Your proposed solution)"
+      description: "Какое правило или технику вы предлагаете зафиксировать в стандарте? Покажите краткий пример кода, если применимо."
+      placeholder: "Предлагаю ввести стандарт именования... Код должен выглядеть так: \n```pawn\nforward Hook_OnPlayerConnect(playerid);\n```"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "3. Альтернативные варианты (Alternative ideas)"
+      description: "Рассматривали ли вы другие подходы? Почему они хуже вашего решения?"
+      placeholder: "Можно было использовать стандартный ALS, но он перегружает стек..."
+    validations:
+      required: false
+
+  - type: checkbox
+    id: ready-to-write
+    attributes:
+      label: "4. Готовность к реализации (Implementation)"
+      options:
+        - label: "Я готов лично написать текст для `pst-template.md` и открыть Pull Request после одобрения идеи сообществом."
+          required: true
