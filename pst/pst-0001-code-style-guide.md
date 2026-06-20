@@ -16,7 +16,6 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 
 * **Indentation:** Use only **Tabs**. Spaces for indentation are not allowed. It is recommended that you set the visual tab width in the editor to 4 spaces.
 * **String length:** The maximum line length is 120 characters. If a line is longer, it must be wrapped using a line break character (`\`) or split logically.
-* **Encoding:** All source code files (`.pwn`, `.inc`) must be saved in **UTF-8 without BOM** encoding.
 * **Line endings:** We recommend using the **LF** (Unix) or **CRLF** (Windows) format, but the style should be consistent throughout the project.
 
 *Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE or editor should scan the beginning of the file for an encoding declaration:
