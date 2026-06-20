@@ -23,7 +23,7 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 ```pawn
   // -*- coding: utf-8 -*-
   ```
-  for older gamemodes:
+  or:
   ```pawn
   // -*- coding: cp1251 -*-
   ```
