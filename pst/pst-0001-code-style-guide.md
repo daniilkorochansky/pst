@@ -21,7 +21,7 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 
 *Technical Note on Encoding:* Historically, the Pawn compiler was tailored for legacy local encodings (like CP1251). However, modern environments like open.mp natively process data in UTF-8.
 
-*Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE ([Spawn](https://github.com/daniilkorochansky/spawn) supports this feature) or editor should scan the beginning of the file for an encoding declaration:
+*Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE or editor should scan the beginning of the file for an encoding declaration:
 
 ```pawn
   // -*- coding: utf-8 -*-
