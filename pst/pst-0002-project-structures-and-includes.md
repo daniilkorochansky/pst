@@ -21,19 +21,22 @@ Every modern Pawn project conforming to PST MUST follow this unified folder stru
 
 ```text
 📁 your-project/
-  ├── 📁 gamemodes/            # Main entry points
-  │    └── 📄 main.pwn         # Minimalistic core compiler entry file
-  ├── 📁 modules/            # Feature-based business logic (or "core", "systems")
-  │    ├── 📁 core/            # Core systems (database, accounts, players)
-  │    │    ├── 📄 database.inc
-  │    │    └── 📄 player.inc
-  │    └── 📁 vehicles/        # Specific feature module
-  │         ├── 📄 callbacks.inc
-  │         ├── 📄 commands.inc
-  │         └── 📄 core.inc
-  ├── 📁 scriptfiles/          # Server runtime assets (data, logs, configs)
-  ├── 📄 pawn.json / pawn.yaml # Dependency management configuration (sampctl)
-  └── 📄 README.md
+  │
+  ├── 📁 gamemodes/            # Main entry points & custom business logic
+  │    ├── 📄 main.pwn         # Minimalistic entry file (compiler entry point)
+  │    └── 📁 modules/         # Custom feature-based business logic (PST Core)
+  │         ├── 📁 core/       # Core systems (database, accounts, players)
+  │         └── 📁 vehicles/   # Specific feature modules (core, commands, etc.)
+  │
+  ├── 📁 scriptfiles/          # Server runtime assets, configurations, and logs
+  ├── 📁 filterscripts/        # [Optional] Isolated or legacy secondary scripts
+  ├── 📁 components/           # open.mp components
+  ├── 📁 dependencies/         # External library packages
+  ├── 📁 plugins/              # Server binary plugins (.dll / .so)
+  ├── 📁 models/               # Custom server-side assets
+  ├── 📁 npcmodes/             # Recording and logic files for server NPCs
+  ├── 📄 config.json           # open.mp server configuration
+  └── 📄 pawn.json             # sampctl configuration
 ```
 
 ### Key Rules:
