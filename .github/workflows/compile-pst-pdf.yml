@@ -22,7 +22,7 @@ jobs:
 
       - name: Compile Markdown to PDF
         run: |
-          pandoc introduction.md psts/pst-*.md \
+          pandoc README.md pst/pst-*.md \
             -o pst-specification.pdf \
             --toc \
             --toc-depth=2 \
