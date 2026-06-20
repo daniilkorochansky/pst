@@ -23,7 +23,7 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 
 Since the internal flag for UTF-8 support in the compiler may exhibit unstable behavior and lead to incorrect string length calculations when working with multibyte characters, developers should implement internationalization and the processing of non-ASCII strings using software means (for example, using special plugins or string-processing extensions) rather than relying on an unstable compiler flag. 
 
-*Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE or editor should scan the beginning of the file for an encoding declaration:
+*Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE ([Spawn](https://github.com/daniilkorochansky/spawn) supports this feature) or editor should scan the beginning of the file for an encoding declaration:
 
 ```pawn
   // -*- coding: utf-8 -*-
