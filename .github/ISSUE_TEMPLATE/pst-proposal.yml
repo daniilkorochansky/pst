@@ -1,45 +1,43 @@
-name: "PST Proposal (Предложение стандарта)"
-description: "Используйте этот шаблон, чтобы предложить новую идею для Pawn Standards and Techniques перед созданием черновика."
-title: "[PST Proposal]: Короткое название идеи"
+name: "PST Proposal"
+description: "Use this template to propose a new idea for Pawn Standards and Techniques before creating a draft."
+title: "[PST Proposal]: Short description of the idea"
 labels: ["PST: Proposal", "status: discussion"]
 body:
   - type: markdown
     attributes:
       value: |
-        ### Привет! Спасибо за идею для улучшения экосистемы Pawn.
-        Перед тем как заполнить форму, пожалуйста, убедитесь, что аналогичное предложение еще не обсуждается в текущих Issues или Pull Requests.
+        ### Hi! Thanks for the suggestion on how to improve the Pawn ecosystem.
+        Before filling out the form, please make sure that a similar proposal is not already being discussed in the current Issues or Pull Requests.
 
   - type: textarea
     id: problem
     attributes:
-      label: "1. Какую проблему вы хотите решить? (What problem are you solving?)"
-      description: "Опишите текущие боли разработчиков. Почему существующие практики в SAMP/open.mp устарели или неэффективны?"
-      placeholder: "Например: Разработчики используют разные стили кастомных колбэков, что ломает совместимость модулей..."
+      label: "1. What problem are you solving?"
+      description: "Describe the current challenges faced by developers. Why are the existing practices in SAMP/open.mp outdated or ineffective?"
     validations:
       required: true
 
   - type: textarea
     id: solution
     attributes:
-      label: "2. Ваше предложение (Your proposed solution)"
-      description: "Какое правило или технику вы предлагаете зафиксировать в стандарте? Покажите краткий пример кода, если применимо."
-      placeholder: "Предлагаю ввести стандарт именования... Код должен выглядеть так: \n```pawn\nforward Hook_OnPlayerConnect(playerid);\n```"
+      label: "2. Your proposed solution"
+      description: "What rule or technique do you suggest be included in the standard? Please provide a brief code example, if applicable."
+      placeholder: "I propose we adopt a naming convention... The code should look like this: \n```pawn\nforward Hook_OnPlayerConnect(playerid);\n```"
     validations:
       required: true
 
   - type: textarea
     id: alternatives
     attributes:
-      label: "3. Альтернативные варианты (Alternative ideas)"
-      description: "Рассматривали ли вы другие подходы? Почему они хуже вашего решения?"
-      placeholder: "Можно было использовать стандартный ALS, но он перегружает стек..."
+      label: "3. Alternative ideas"
+      description: "Have you considered other approaches? Why are they inferior to your solution?"
     validations:
       required: false
 
   - type: checkboxes
     id: ready-to-write
     attributes:
-      label: "4. Готовность к реализации (Implementation)"
+      label: "4. Implementation"
       options:
-        - label: "Я готов лично написать текст для `pst-template.md` и открыть Pull Request после одобрения идеи сообществом."
+        - label: "I'm willing to write the text for `pst-template.md` myself and open a pull request once the community approves the idea."
           required: true
