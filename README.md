@@ -42,7 +42,7 @@ Each proposal undergoes a rigorous selection and review process. The document's 
 Any community member can become a standard author. The process is as follows:
 
 1. **Discussion of the Idea:** Before writing the text, create an issue in the `Issues` section of the PST repository. Describe the problem you want to solve.
-2. **Creating a Draft:** If the idea is approved, fork the PST repository and create a new file based on the template (for example, `pst-0002.md`) with the status `Draft`.
+2. **Creating a Draft:** If the idea is approved, fork the PST repository and create a new file based on the [TEMPLATE](https://github.com/daniilkorochansky/pst/blob/main/pst-template.md) (for example, `pst-0001-code-style-guide.md`) with the status `Draft`.
 3. **Opening a Pull Request (PR):** Submit your draft for review. A public discussion phase will begin, during which each point will be addressed in the code comments.
 4. **Revision:** The author is required to respond to constructive criticism and make revisions to the PR.
 5. **Recording the Decision:** The PST Editor (or panel of experts) makes a consensus-based decision to change a document's status to `Accepted` or `Rejected`.
