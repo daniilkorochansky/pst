@@ -4,6 +4,12 @@
 ![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
 [![Discussions](https://img.shields.io/github/discussions/daniilkorochansky/pst?label=discussions)](https://github.com/daniilkorochansky/pst/discussions)
 
+<div align="center">
+  [English
+  /
+  <a href="https://github.com/daniilkorochansky/pst/blob/main/README_ru.md">Русский</a>]
+</div>
+
 # PST — Pawn Standards and Techniques
 
 PST is a collection of community standards, conventions and best practices
