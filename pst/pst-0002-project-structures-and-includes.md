@@ -69,10 +69,10 @@ To prevent compilation errors caused by duplicate include statements across diff
 ```pawn
 // CORRECT:
 // In modules/core/database.inc
-#if defined _MODULE_DATABASE_INCLUDED
+#if defined _MODULE_DATABASE_INCLUDE
     #endinput
 #endif
-#define _MODULE_DATABASE_INCLUDED
+#define _MODULE_DATABASE_INCLUDE
 
 // Module code goes here
 ```
