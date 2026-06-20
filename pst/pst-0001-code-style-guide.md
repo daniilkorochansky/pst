@@ -32,12 +32,12 @@ Since the internal flag for UTF-8 support in the compiler may exhibit unstable b
 ```pawn
   // -*- coding: utf-8 -*-
   ```
-  для старых модов:
+  for older gamemodes:
   ```pawn
   // -*- coding: cp1251 -*-
   ```
   
-  If no encoding declaration is present, the IDE must fallback to **UTF-8 without BOM** as the default standard. This prevents compiler errors caused by Byte Order Marks and ensures cross-platform compatibility on GitHub
+  If no encoding declaration is present, the IDE must fallback to **UTF-8 without BOM** as the default standard. This prevents compiler errors caused by Byte Order Marks and ensures cross-platform compatibility.
 
 ## 3. Braces Style
 
