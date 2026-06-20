@@ -20,10 +20,6 @@ tool compatibility and project organization.
 - PST-0003 — Documentation Comments
 - PST-0004 — Source File Encodings
 
-## Status
-
-Experimental
-
 ## License
 
 Pawn Standards and Techniques (PST) is licensed under a
