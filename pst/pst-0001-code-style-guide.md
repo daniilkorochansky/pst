@@ -19,8 +19,6 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 * **Encoding:** All source code files (`.pwn`, `.inc`) must be saved in **UTF-8 without BOM** encoding.
 * **Line endings:** We recommend using the **LF** (Unix) or **CRLF** (Windows) format, but the style should be consistent throughout the project.
 
-*Technical Note on Encoding:* Historically, the Pawn compiler was tailored for legacy local encodings (like CP1251). However, modern environments like open.mp natively process data in UTF-8.
-
 *Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE or editor should scan the beginning of the file for an encoding declaration:
 
 ```pawn
