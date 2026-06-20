@@ -26,7 +26,7 @@ jobs:
           sed -e '/<div align="center">/,/<\/div>/d' "$TARGET_FILE" > temp_intro.md
           
           # 2. Жестко вырезаем остатки строки с языками и бейджи
-          grep -v -E "(\[English|Русский|\[English \/ Русский\]|license|status|documents|contribution|discussion)" temp_intro.md > clean_intro.md
+          grep -v -E "(\[English|Русский|\[English \/ Русский\]|license|status|contribution|discussion)" temp_intro.md > clean_intro.md
           
           # 3. Добавляем валидный разрыв страницы через HTML-совместимый тег
           echo -e "\n<div style=\"page-break-after: always;\"></div>" >> clean_intro.md
