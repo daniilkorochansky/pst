@@ -1,16 +1,12 @@
 # PST-0001: Code Style Guide
-
-**PST**: 0001
-
-**Title**: Code Style Guide
-
-**Author**: Daniil Korochansky ([GitHub Profile](https://github.com/daniilkorochansky))
-
-**Status**: Draft
-
-**Type**: Standards
-
-**Created**: 20-Jun-2026
+```text
+PST: 0001
+Title: Code Style Guide
+Author: Daniil Korochansky (https://github.com/daniilkorochansky)
+Status: Draft
+Type: Standards
+Created: 20-Jun-2026
+```
 
 ## 1. Introduction
 
