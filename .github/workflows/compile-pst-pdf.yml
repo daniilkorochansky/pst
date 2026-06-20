@@ -16,59 +16,73 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc weasyprint
 
-      # Надежная очистка README от бейджей, картинок и переключателей языков
+      # Тщательная очистка README от многострочного HTML с языками и бейджей
       - name: Prepare Clean Introduction from README
         run: |
-          # 1. Удаляем строки, содержащие markdown-ссылки на изображения (бейджи)
-          # 2. Удаляем строку с выбором языков (чувствительно к регистру и пробелам)
-          grep -v -E "(\!\[|img\.shields|license|status|contribution|discussion|English.*Russian|Русский)" README.md > clean_intro.md
+          # 1. Сначала полностью вырезаем многострочный блок <div align="center">...</div> с языками
+          sed -e '/<div align="center">/,/<\/div>/d' README_ru.md > temp_intro.md
           
-          # Добавляем разрыв страницы в конец введения
+          # 2. Удаляем текстовые бейджи/ссылки, если они остались вверху файла
+          grep -v -E "(License|Status|Documents|Contributions|Welcome|Discussions)" README.md > clean_intro.md
+          
+          # 3. Добавляем разрыв страницы в конец введения
           echo -e "\n\pagebreak" >> clean_intro.md
 
-      # Создаем CSS-стиль: заголовки черные, у ссылок в оглавлении есть подчеркивание
+      # Создаем CSS-стиль: строгий, с датой вверху каждой страницы и нижним подчеркиванием в TOC
       - name: Create PDF Custom Stylesheet
         run: |
           cat << 'EOF' > pdf-style.css
+          /* Настройка страницы: добавляем дату в левый верхний угол (margin-box) */
+          @page {
+              size: A4;
+              margin: 1in;
+              @top-left {
+                  content: "Generated: 20-Jun-2026";
+                  font-family: "DejaVu Sans", sans-serif;
+                  font-size: 9px;
+                  color: #555555;
+              }
+          }
+
           body {
               font-family: "DejaVu Sans", sans-serif;
               color: #000000;
               line-height: 1.6;
           }
           
-          /* Строгий черный цвет для всех заголовков */
           h1, h2, h3, h4 {
               color: #000000;
+              margin-top: 24px;
           }
           
           h1 {
               border-bottom: 1px solid #cccccc;
               padding-bottom: 6px;
-              margin-top: 30px;
           }
           
-          /* Оформление оглавления с нижним подчеркиванием у ссылок */
+          /* Оформление оглавления с нижним подчеркиванием */
           #TOC {
               margin-bottom: 30px;
               padding: 10px 0;
           }
           #TOC a {
               color: #000000;
-              text-decoration: underline; /* Добавлено нижнее подчеркивание */
+              text-decoration: underline;
           }
           #TOC li {
               list-style-type: none;
               margin-bottom: 6px;
           }
           
-          /* Классические блоки для кода Pawn */
+          /* Исправленное отображение блоков кода без багов разметки */
           pre {
               background-color: #f6f8fa;
               border: 1px solid #e1e4e8;
               border-radius: 4px;
               padding: 12px;
               font-family: "DejaVu Sans Mono", monospace;
-              font-size: 12px;
+              font-size: 11px;
+              white-space: pre-wrap;
           }
           
           blockquote {
@@ -79,16 +93,16 @@ jobs:
           }
           EOF
 
-      # Собираем PDF с использованием строгой темы
+      # Собираем PDF строго в формате markdown (с флагом gfm для исключения багов со звездочками)
       - name: Compile Markdown to PDF
         run: |
           pandoc clean_intro.md pst/pst-*.md \
+            -f gfm \
             -o pst-specification.pdf \
             --toc \
             --toc-depth=2 \
             --pdf-engine=weasyprint \
-            -c pdf-style.css \
-            -V geometry:margin=1in
+            -c pdf-style.css
 
       - name: Upload PDF Artifact
         uses: actions/upload-artifact@v4
