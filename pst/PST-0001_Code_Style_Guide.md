@@ -25,6 +25,20 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 
 *Technical Note on Encoding:* Historically, the Pawn compiler was tailored for legacy local encodings (like CP1251). However, modern environments like open.mp natively process data in UTF-8.
 
+Since the internal flag for UTF-8 support in the compiler may exhibit unstable behavior and lead to incorrect string length calculations when working with multibyte characters, developers should implement internationalization and the processing of non-ASCII strings using software means (for example, using special plugins or string-processing extensions) rather than relying on an unstable compiler flag. 
+
+*Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE or editor should scan the beginning of the file for an encoding declaration:
+
+```pawn
+  // -*- coding: utf-8 -*-
+  ```
+  для старых модов:
+  ```pawn
+  // -*- coding: cp1251 -*-
+  ```
+  
+  If no encoding declaration is present, the IDE must fallback to **UTF-8 without BOM** as the default standard. This prevents compiler errors caused by Byte Order Marks and ensures cross-platform compatibility on GitHub
+
 ## 3. Braces Style
 
 PST recommends using the **Allman style** (brackets on a new line) for functions, callbacks, loops, and conditions. This style ensures maximum vertical readability in Pawn.
