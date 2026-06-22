@@ -18,17 +18,32 @@ The purpose of this standard is to make the code for Pawn-based server mods read
 * **String length:** The maximum line length is 120 characters. If a line is longer, it must be wrapped using a line break character (`\`) or split logically.
 * **Line endings:** We recommend using the **LF** (Unix) or **CRLF** (Windows) format, but the style should be consistent throughout the project.
 
-*Encoding Declaration:* To ensure seamless transition between legacy and modern projects, PST introduces explicit encoding declarations via source code comments. An IDE or editor should scan the beginning of the file for an encoding declaration:
+### Supported Encodings
+PST does not mandate a specific source file encoding.
 
-```pawn
-  // -*- coding: utf-8 -*-
-  ```
-  or:
-  ```pawn
-  // -*- coding: cp1251 -*-
-  ```
-  
-  If no encoding declaration is present, the IDE must fallback to **UTF-8 without BOM** as the default standard. This prevents compiler errors caused by Byte Order Marks and ensures cross-platform compatibility.
+Pawn projects may use different encodings depending on the language requirements of the project, existing codebase, compiler behavior, development tools, and team preferences.
+
+Common encodings include:
+* UTF-8
+* Windows-1250 (Central European)
+* Windows-1251 (Cyrillic)
+* Windows-1252 (Western European)
+* Windows-1253 (Greek)
+* Windows-1254 (Turkish)
+* Windows-1255 (Hebrew)
+* Windows-1256 (Arabic)
+* Windows-1257 (Baltic)
+
+#### IDE Behavior
+If an encoding declaration is present, an IDE should use the declared encoding when opening and saving the file.
+
+If no encoding declaration is present, an IDE may use automatic encoding detection, project-specific settings, or user-defined defaults.
+
+#### Purpose of Encoding Declarations
+Encoding declarations exist to make source files self-describing and to reduce ambiguity when exchanging code between different editors, IDEs, operating systems, and development teams.
+
+The declaration does not imply a preferred encoding. Its purpose is to explicitly document the encoding used by the source file.
+
 
 ## 3. Braces Style
 
