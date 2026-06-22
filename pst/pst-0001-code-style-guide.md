@@ -44,6 +44,19 @@ Encoding declarations exist to make source files self-describing and to reduce a
 
 The declaration does not imply a preferred encoding. Its purpose is to explicitly document the encoding used by the source file.
 
+An encoding declaration may use either of the following formats:
+```pawn
+// -*- coding: utf-8 -*-
+```
+or
+```pawn
+// coding: utf-8
+```
+Both forms are considered equivalent.
+
+The first form is commonly preferred to ensure greater clarity and readability of source files, whereas the compact form may be more suitable for short titles or existing codebases.
+
+
 
 ## 3. Braces Style
 
