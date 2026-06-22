@@ -23,10 +23,10 @@ jobs:
           TARGET_FILE="README.md"
 
           # 1. Вырезаем многострочный блок с разметкой div
-          sed -e '/<div align="center">/,/<\/div>/d' "$TARGET_FILE" > temp_intro.md
+          sed '/<div align="center">/,/<\/div>/d' "$TARGET_FILE" > temp_intro.md
           
           # 2. Жестко вырезаем остатки строки с языками и бейджи
-          grep -v -E "(\[English|Русский|\[English \/ Русский\]|license|status|contribution|discussion)" temp_intro.md > clean_intro.md
+          grep -vE '^\[!\[.*\]\(https://img\.shields\.io/.*\)\].*$' temp_intro.md > clean_intro.md
           
           # 3. Добавляем валидный разрыв страницы через HTML-совместимый тег
           echo -e "\n<div style=\"page-break-after: always;\"></div>" >> clean_intro.md
@@ -103,7 +103,8 @@ jobs:
       - name: Compile Markdown to PDF
         run: |
           FILE_DATE=$(date +'%Y-%m-%d')
-          pandoc clean_intro.md pst/pst-*.md \
+          PST_FILES=$(find pst -type f -name 'pst-*.md' | sort -V)
+          pandoc clean_intro.md $PST_FILES \
             -f gfm \
             -o "pst-specification-${FILE_DATE}.pdf" \
             --toc \
