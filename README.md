@@ -17,7 +17,7 @@ for Pawn development in open.mp and SA-MP projects.
 The goal of PST is to improve code readability, maintainability,
 tool compatibility and project organization.
 
-## 2. Types of PST Files
+## 1. Types of PST Files
 
 All PST files fall into three categories:
 
@@ -26,7 +26,7 @@ All PST files fall into three categories:
 3. **Process:** Documents describing the internal rules of the PST project itself.
 
 
-## 3. PST Lifecycle and Statuses
+## 2. PST Lifecycle and Statuses
 
 Each proposal undergoes a rigorous selection and review process. The document's status is indicated in its title:
 
@@ -36,7 +36,7 @@ Each proposal undergoes a rigorous selection and review process. The document's 
 * **Rejected:** The proposal has been deemed ineffective, outdated, or harmful. The document is archived, and the reasons for rejection must be specified.
 * **Obsolete:** A previously adopted standard that is no longer relevant (for example, due to global updates to open.mp) and has been replaced by the new PST.
 
-## 4. How to Submit Your PST: A Step-by-Step Guide
+## 3. How to Submit Your PST: A Step-by-Step Guide
 
 Any community member can become a standard author. The process is as follows:
 
@@ -48,7 +48,7 @@ Any community member can become a standard author. The process is as follows:
 
 ---
 
-## 5. Header Template (Metadata)
+## 4. Header Template (Metadata)
 
 Each new proposal must begin with the following metadata block:
 
