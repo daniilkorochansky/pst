@@ -88,18 +88,30 @@ if (!IsPlayerConnected(playerid)) return 1;
 
 Magic abbreviations are prohibited. Names must reflect the essence of the variable or function.
 
-* **Callbacks and Hooks:** `PascalCase` is used.
+* **Functions:** `PascalCase` is used.
   * *Example:* `ForwardPlayerToCoordinates`, `OnPlayerConnect`.
-* **Local and global variables:** `camelCase` is used.
+
+* **Variables:** `camelCase` is used.
   * *Example:* `localVariable`, `playerTargetVehicle`.
+ 
+Global variables declared using new must always use `g_` prefixed PascalCase, so `g_VariableName`, however if they are declared using static they must always use `s_` prefixed PascalCase, so `s_VariableName`.
+
+Local variables must always use `camelCase` and must never use single letter names, apart from:
+
+i, j, k, etc in for loops.
+
+x, y, z, etc in mathematical contexts.
+
 * **Constants and Macros (`#define`):** `UPPER_CASE` with underscores is used.
   * *Example:* `MAX_FACTIONS`, `MAX_ADMIN_LEVEL`.
+
 * **Enumerations (`enum`):** The name of the enumeration itself is written in `PascalCase`, and its elements are written in `UPPER_CASE` with a prefix.
   * *Example:*
     ```pawn
     enum E_PLAYER_DATA
     {
         P_ID,
+        Float:P_HEALTH,
         P_NAME[MAX_PLAYER_NAME],
         P_MONEY
     }
